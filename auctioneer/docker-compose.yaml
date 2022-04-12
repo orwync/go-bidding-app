@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  cache:
+    image: "redis:alpine"
+    ports:
+      - 6379:6379
+    command: redis-server
+    volumes: 
+      - cache:/data
+  auctioneer:
+    build: .
+    environment:
+      - name=value
+    # container_name: auctioneer
+    # image: auctioneer
+    depends_on: 
+      - cache
+    network_mode: host
+volumes:
+  cache:
+    driver: local

@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  bidder1:
+    build: .
+    environment:
+      - PORT=1001
+      - BIDDER_ID=id1
+      - PRICE=1000
+      - DELAY=100
+      - AUCTION_URL=http://localhost:4000/registration
+    network_mode: host
+  bidder2:
+    build: .
+    environment:
+      - PORT=1002
+      - BIDDER_ID=id
+      - PRICE=2000
+      - DELAY=500
+      - AUCTION_URL=http://localhost:4000/registration
+    network_mode: host
+  bidder3:
+    build: .
+    environment:
+      - PORT=1003
+      - BIDDER_ID=id3
+      - PRICE=1500
+      - DELAY=50
+      - AUCTION_URL=http://localhost:4000/registration
+    network_mode: host
+volumes:
+  cache:
+    driver: local
