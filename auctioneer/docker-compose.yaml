@@ -10,10 +10,6 @@ services:
       - cache:/data
   auctioneer:
     build: .
-    environment:
-      - name=value
-    # container_name: auctioneer
-    # image: auctioneer
     depends_on: 
       - cache
     network_mode: host
