@@ -35,6 +35,20 @@ func BidController(context *gin.Context) {
 		}
 	}
 
+	if maxBidder.BidValue == 0 && maxBidder.BidderId == "" {
+		context.JSON(http.StatusPartialContent, utils.BidResponseBody{
+			Message: "no bids",
+			Data: utils.BidResponse{
+				AuctionId:   registerBody.AuctionId,
+				MaxBidValue: 0,
+				BidderId:    "",
+			},
+			Error: "",
+		})
+
+		return
+	}
+
 	context.JSON(http.StatusAccepted, utils.BidResponseBody{
 		Message: "success",
 		Data: utils.BidResponse{
